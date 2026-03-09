@@ -1,43 +1,44 @@
-/* app/page.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500&display=swap');
 
+/* =========================================
+   1. PENGUNCI LAYAR LUAR (Anti Scroll Bocor)
+   ========================================= */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100dvh;
+  height: 100dvh; /* FIX: Pake fixed height, bukan min-height */
+  width: 100vw;
+  overflow: hidden; /* FIX: Kunci layar luar browser */
   font-family: 'Montserrat', sans-serif;
+  background-color: #043e2f;
 }
 
 .mobileFrame {
   width: 100%;
   max-width: 480px;
-  height: 100dvh;
+  height: 100%;
   background: linear-gradient(135deg, #0d6e66 0%, #043e2f 100%);
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* FIX: Kunci layar tengah */
   display: flex;
   flex-direction: column;
   color: white;
+  box-sizing: border-box;
 }
 
-/* =========================================
-   FIX: PATTERN FULL SCREEN TAPI MEMUDAR KE ATAS
-   ========================================= */
 .patternOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/islamic-pattern.png'); /* Ganti sesuai nama file lu */
+  background-image: url('/islamic-pattern.png'); 
   background-size: cover; 
   background-position: center bottom;
   opacity: 0.15; 
   z-index: 1;
   pointer-events: none;
-  
-  /* Gradasi Masking: Transparan di atas (0%), hitam solid di bawah (70% ke bawah) */
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 70%);
   mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 70%);
 }
@@ -51,45 +52,43 @@
   }
 }
 
+/* =========================================
+   2. PENGUNCI KONTEN SCROLL (Ini yang geser)
+   ========================================= */
 .contentWrapper {
-  position: relative;
+  position: absolute; /* FIX: Lepasin dari flow biar full nutupin layar */
+  top: 0;
+  left: 0;
   z-index: 10; 
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 100%;
   
-  /* Padding bawah digedein (7rem) biar konten paling bawah gak ketutup navbar */
-  padding: 2.5rem 2rem 7rem 2rem; 
-  flex: 1;
+  /* Padding bawah digedein (8.5rem) biar aman dari navbar */
+  padding: 2.5rem 1.5rem 8.5rem 1.5rem; 
   
-  /* INI KUNCI UTAMANYA BRO: Bikin area ini bisa discroll ke bawah */
   overflow-y: auto;
   overflow-x: hidden;
+  box-sizing: border-box; /* FIX: Biar width 100% gak ngelewatin layar */
 }
 
-/* Sembunyiin scrollbar biar tetep estetik kayak aplikasi iOS */
 .contentWrapper::-webkit-scrollbar {
   display: none;
 }
 
-/* =========================================
-   FIX: YAYASAN KECIL & ELEGAN
-   ========================================= */
 .yayasanTitle {
-  font-size: 1.1rem; /* Dikecilin bro */
+  font-size: 1.1rem; 
   font-weight: 600;
   line-height: 1.4;
   margin: 0 0 2rem 0;
   text-align: center;
-  letter-spacing: 0.2em; /* Spasi antar huruf dilebarin biar mewah */
+  letter-spacing: 0.2em; 
   text-transform: uppercase;
-  color: #ccfbf1; /* Hijau super tipis/keputihan */
+  color: #ccfbf1; 
 }
 
-/* =========================================
-   FIX: JUDUL ACARA RAKSASA (TAN HEADLINE)
-   ========================================= */
 .eventTitleBlock {
   margin-bottom: 2.5rem;
   text-align: center;
@@ -97,11 +96,10 @@
 }
 
 .eventTitleText {
-  /* Manggil font lokal lu */
   font-family: 'TAN Headline', serif; 
   color: #fff;
   font-weight: normal; 
-  font-size: 3.8rem; /* Digedein parah bro! */
+  font-size: 3.8rem; 
   line-height: 1;
   margin: 0 0 0.5rem 0;
   text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
@@ -126,9 +124,6 @@
   padding: 0 1rem;
 }
 
-/* =========================================
-   GLASSMORPHISM CARD & BUTTON 
-   ========================================= */
 .card {
   width: 100%;
   padding: 2rem;
@@ -141,6 +136,7 @@
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
   color: white;
   text-align: center;
+  box-sizing: border-box; /* FIX */
 }
 
 .cardSubtitle {
@@ -190,6 +186,7 @@
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   z-index: 10;
+  box-sizing: border-box; /* FIX */
 }
 
 .btn:hover {
@@ -202,9 +199,6 @@
   transform: translateY(1px);
 }
 
-/* =========================================
-   BOTTOM NAVIGATION BAR (SCROLLABLE)
-   ========================================= */
 .bottomNav {
   position: absolute;
   bottom: 0;
@@ -212,21 +206,19 @@
   width: 100%;
   background: white;
   display: flex;
-  justify-content: flex-start; /* Ubah dari space-around biar bisa digeser */
+  justify-content: flex-start;
   align-items: center;
-  gap: 0.5rem; /* Jarak antar menu */
+  gap: 0.5rem; 
   padding: 0.75rem 1rem 1.5rem 1rem;
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
   z-index: 50;
   box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
-  
-  /* Bikin bisa scroll horizontal */
   overflow-x: auto;
   scroll-behavior: smooth;
+  box-sizing: border-box; /* FIX */
 }
 
-/* Sembunyiin scrollbar di navbar */
 .bottomNav::-webkit-scrollbar {
   display: none;
 }
@@ -238,13 +230,13 @@
   justify-content: center;
   font-size: 0.65rem;
   font-weight: 700;
-  padding: 0.5rem 1.2rem; /* Agak dilebarin paddingnya */
+  padding: 0.5rem 1.2rem; 
   border-radius: 16px;
   cursor: pointer;
   color: #9ca3af;
   transition: all 0.3s ease;
   gap: 4px;
-  flex-shrink: 0; /* Biar menunya ga menyusut/gepeng */
+  flex-shrink: 0; 
 }
 
 .navItemActive {
@@ -252,9 +244,6 @@
   color: #043e2f; 
 }
 
-/* =========================================
-   RSVP STYLES
-   ========================================= */
 .himbauanBox {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -265,12 +254,13 @@
   margin-bottom: 2rem;
   text-align: left;
   width: 100%;
+  box-sizing: border-box; /* FIX: Ini yang bikin maps melebar */
 }
 
 .himbauanTitle {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #facc15; /* Kuning emas */
+  color: #facc15; 
   margin: 0 0 1rem 0;
   display: flex;
   align-items: center;
@@ -306,6 +296,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  box-sizing: border-box; /* FIX */
 }
 
 .waBtn:hover {
@@ -314,15 +305,12 @@
   box-shadow: 0 15px 25px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* =========================================
-   WISHES / GUESTBOOK STYLES (BUKU TAMU)
-   ========================================= */
 .wishesContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding-bottom: 6rem;
+  padding-bottom: 2rem;
 }
 
 .formBox {
@@ -333,6 +321,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  box-sizing: border-box; /* FIX */
 }
 
 .inputField, .textareaField {
@@ -345,6 +334,7 @@
   font-family: inherit;
   font-size: 0.9rem;
   outline: none;
+  box-sizing: border-box; /* FIX */
 }
 
 .inputField::placeholder, .textareaField::placeholder {
@@ -365,6 +355,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: 0.2s;
+  box-sizing: border-box; /* FIX */
 }
 
 .submitBtn:hover {
@@ -375,7 +366,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  /* Kita hapus max-height & overflow di sini juga */
 }
 
 .commentList::-webkit-scrollbar {
@@ -419,16 +409,12 @@
   line-height: 1.4;
 }
 
-/* =========================================
-   EVENT STYLES (HALAMAN ACARA)
-   ========================================= */
 .eventContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 1rem;
-  padding-bottom: 6rem; /* Biar ga ketutup navbar */
 }
 
 .eventRow {
@@ -444,8 +430,8 @@
   justify-content: center;
   width: 45px;
   height: 45px;
-  background: rgba(250, 204, 21, 0.15); /* Transparan kuning */
-  color: #facc15; /* Icon kuning */
+  background: rgba(250, 204, 21, 0.15); 
+  color: #facc15; 
   border-radius: 50%;
   border: 1px solid rgba(250, 204, 21, 0.3);
 }
@@ -464,9 +450,6 @@
   margin: 0;
 }
 
-/* =========================================
-   COUNTDOWN TIMER
-   ========================================= */
 .countdownContainer {
   display: flex;
   justify-content: center;
@@ -501,9 +484,6 @@
   letter-spacing: 0.05em;
 }
 
-/* =========================================
-   TAMBAHAN: TEKS YOU'RE INVITED TO
-   ========================================= */
 .invitedText {
   font-size: 0.75rem;
   font-weight: 600;
@@ -514,19 +494,14 @@
   text-align: center;
 }
 
-/* =========================================
-   RUNDOWN STYLES (HALAMAN JADWAL)
-   ========================================= */
 .rundownContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-top: 1rem;
-  /* Kita hapus max-height & overflow biar dia ngikut scroll halaman utama */
 }
 
-/* Sembunyiin scrollbar biar tetep clean kayak aplikasi HP */
 .rundownContainer::-webkit-scrollbar {
   display: none;
 }
@@ -539,6 +514,7 @@
   display: flex;
   flex-direction: column;
   text-align: left;
+  box-sizing: border-box; /* FIX */
 }
 
 .rundownHeader {
@@ -582,12 +558,9 @@
   margin-bottom: 0.25rem;
 }
 
-/* =========================================
-   TOMBOL MUSIK FLOATING
-   ========================================= */
 .musicBtn {
   position: fixed;
-  bottom: 100px; /* Di atas navbar bawah */
+  bottom: 100px;
   right: 20px;
   background: #facc15;
   color: #043e2f;

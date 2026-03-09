@@ -14,7 +14,7 @@ export default function EventTab() {
   const [timeLeft, setTimeLeft] = useState({ d: '00', h: '00', m: '00', s: '00' });
 
   useEffect(() => {
-    const targetDate = new Date("2026-03-11T16:30:00").getTime();
+    const targetDate = new Date("2026-03-11T15:00:00").getTime();
     const interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = targetDate - now;

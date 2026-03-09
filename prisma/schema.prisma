@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Tabel untuk daftar tamu
+model Guest {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+}
+
+// Tabel untuk ucapan/komentar
+model Wish {
+  id        String   @id @default(cuid())
+  name      String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+// Tambahin ini di paling bawah schema.prisma lu
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}

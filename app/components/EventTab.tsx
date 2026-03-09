@@ -59,7 +59,7 @@ export default function EventTab() {
         <div className={styles.eventRow}>
           <div className={styles.iconBox}><Clock size={24} /></div>
           <div>
-            <p className={styles.eventTextPrimary}>Pukul 16.30 WIB - Selesai</p>
+            <p className={styles.eventTextPrimary}>Pukul 15.00 WIB - Selesai</p>
             <p className={styles.eventTextSecondary}>Waktu setempat</p>
           </div>
         </div>

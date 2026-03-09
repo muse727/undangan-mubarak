@@ -46,7 +46,7 @@ export default function RsvpTab({ guestName }: { guestName: string }) {
           <li>Hadir tepat waktu sebelum rangkaian acara dimulai.</li>
           <li>Membawa Al Quran.</li>
           <li>Menjaga ketertiban dan kebersihan lingkungan sekolah.</li>
-          <li>Konfirmasi kehadiran maksimal tanggal <strong>9 Maret 2026</strong>.</li>
+          <li>Konfirmasi kehadiran maksimal tanggal <strong>10 Maret 2026</strong>.</li>
         </ul>
       </div>
 

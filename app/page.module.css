@@ -58,9 +58,19 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 2.5rem 2rem;
+  
+  /* Padding bawah digedein (7rem) biar konten paling bawah gak ketutup navbar */
+  padding: 2.5rem 2rem 7rem 2rem; 
   flex: 1;
-  justify-content: center;
+  
+  /* INI KUNCI UTAMANYA BRO: Bikin area ini bisa discroll ke bawah */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Sembunyiin scrollbar biar tetep estetik kayak aplikasi iOS */
+.contentWrapper::-webkit-scrollbar {
+  display: none;
 }
 
 /* =========================================
@@ -365,9 +375,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-height: 50vh;
-  overflow-y: auto;
-  padding-right: 0.5rem;
+  /* Kita hapus max-height & overflow di sini juga */
 }
 
 .commentList::-webkit-scrollbar {
@@ -515,11 +523,7 @@
   flex-direction: column;
   gap: 1rem;
   margin-top: 1rem;
-  padding-bottom: 6rem; /* Biar gak ketutup navbar bawah */
-  
-  /* Bikin bisa di-scroll ke bawah khusus area ini aja */
-  overflow-y: auto;
-  max-height: 65vh; 
+  /* Kita hapus max-height & overflow biar dia ngikut scroll halaman utama */
 }
 
 /* Sembunyiin scrollbar biar tetep clean kayak aplikasi HP */

@@ -13,7 +13,7 @@ const pageVariants: Variants = {
 export default function RsvpTab({ guestName }: { guestName: string }) {
   
   const handleWA = () => {
-    const nomorWA = "6281234567890"; // Ganti nomor panitia
+    const nomorWA = "628979331176";
     
     // Nama di WA juga otomatis ngikutin link
     const pesan = `Assalamu'alaikum Warahmatullahi Wabarakatuh.%0A%0ASaya *${guestName}*, InsyaAllah *AKAN HADIR* pada acara Iftar Jama'i Keluarga Besar SIT Al Mubarak pada hari Rabu, 11 Maret 2026.`;

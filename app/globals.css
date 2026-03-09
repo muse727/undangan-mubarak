@@ -1,9 +1,10 @@
 /* app/globals.css */
+/* Tambahin ini di baris paling atas globals.css lu */
 html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  background-color: #0f172a; /* Warna gelap untuk area luar HP di desktop */
+  /* Warna hijau gelap yang senada sama background undangan lu */
+  background-color: #043e2f; 
 }
 
 *, *:before, *:after {
